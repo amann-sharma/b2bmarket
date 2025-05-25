@@ -85,6 +85,80 @@ MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/b2bmarket?
 
 Replace `<username>`, `<password>`, and `<cluster>` with your actual MongoDB Atlas credentials.
 
+### MongoDB Terminal Commands
+
+Here are some useful MongoDB commands for managing your database:
+
+1. Connect to MongoDB:
+```bash
+mongosh
+```
+
+2. List all databases:
+```bash
+show dbs
+```
+
+3. Switch to b2bmarket database:
+```bash
+use b2bmarket
+```
+
+4. List all collections:
+```bash
+show collections
+```
+
+5. View all documents in a collection:
+```bash
+db.listings.find()
+db.categories.find()
+```
+
+6. Search listings with filters:
+```bash
+# Find by category
+db.listings.find({ categoryId: ObjectId("category_id_here") })
+
+# Find by price range
+db.listings.find({ price: { $gte: 500, $lte: 1000 } })
+
+# Find by text search
+db.listings.find({ $text: { $search: "4k tv" } })
+```
+
+7. Count documents:
+```bash
+db.listings.countDocuments()
+```
+
+8. Create indexes for better performance:
+```bash
+# Text index for search
+db.listings.createIndex({ title: "text", description: "text" })
+
+# Index for price range queries
+db.listings.createIndex({ price: 1 })
+```
+
+9. Backup and restore:
+```bash
+# Backup
+mongodump --db b2bmarket --out ./backup
+
+# Restore
+mongorestore --db b2bmarket ./backup/b2bmarket
+```
+
+10. Monitor database status:
+```bash
+# Show database stats
+db.stats()
+
+# Show collection stats
+db.listings.stats()
+```
+
 ## Getting Started
 
 1. Clone the repository:
