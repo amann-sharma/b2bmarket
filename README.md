@@ -26,30 +26,95 @@ A modern B2B marketplace built with Next.js 14, MongoDB, and Tailwind CSS. This 
 - MongoDB (local or Atlas)
 - npm or yarn
 
+## MongoDB Setup
+
+### Option 1: Local MongoDB Installation
+
+1. Install MongoDB Community Edition:
+   - **macOS** (using Homebrew):
+     ```bash
+     brew tap mongodb/brew
+     brew install mongodb-community
+     ```
+   - **Windows**: Download and install from [MongoDB Download Center](https://www.mongodb.com/try/download/community)
+   - **Linux** (Ubuntu):
+     ```bash
+     sudo apt-get update
+     sudo apt-get install mongodb
+     ```
+
+2. Start MongoDB service:
+   - **macOS**:
+     ```bash
+     brew services start mongodb-community
+     ```
+   - **Windows**: MongoDB runs as a service automatically
+   - **Linux**:
+     ```bash
+     sudo systemctl start mongodb
+     ```
+
+3. Verify installation:
+   ```bash
+   mongosh
+   ```
+
+### Option 2: MongoDB Atlas (Cloud)
+
+1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
+2. Create a new cluster (free tier is sufficient)
+3. Set up database access:
+   - Create a database user with password
+   - Add your IP address to the IP whitelist
+4. Get your connection string:
+   - Click "Connect" on your cluster
+   - Choose "Connect your application"
+   - Copy the connection string
+
+### Connection String Format
+
+For local MongoDB:
+```
+MONGODB_URI=mongodb://localhost:27017/b2bmarket
+```
+
+For MongoDB Atlas:
+```
+MONGODB_URI=mongodb+srv://<username>:<password>@<cluster>.mongodb.net/b2bmarket?retryWrites=true&w=majority
+```
+
+Replace `<username>`, `<password>`, and `<cluster>` with your actual MongoDB Atlas credentials.
+
 ## Getting Started
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/amann-sharma/b2bmarket.git
+git clone https://github.com/amansharma/b2bmarket.git
 cd b2bmarket
 ```
 
-2. Install dependencies:
+2. Set up git configuration (if not already done):
+```bash
+git config --global user.name "Your Name"
+git config --global user.email "your.email@example.com"
+```
+
+3. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Create a `.env.local` file in the root directory:
+4. Create a `.env.local` file in the root directory:
 ```env
 MONGODB_URI=your_mongodb_connection_string
 ```
 
-4. Seed the database with sample data:
+5. Seed the database with sample data:
 ```bash
 npm run seed
 ```
 
-5. Start the development server:
+6. Start the development server:
 ```bash
 npm run dev
 ```
@@ -194,4 +259,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Next.js team for the amazing framework
 - MongoDB for the flexible database
-- Tailwind CSS for the utility-first CSS framework # b2bmarket
+- Tailwind CSS for the utility-first CSS framework
